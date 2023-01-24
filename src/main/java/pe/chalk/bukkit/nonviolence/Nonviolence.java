@@ -1,5 +1,6 @@
 package pe.chalk.bukkit.nonviolence;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +13,7 @@ public final class Nonviolence extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(this, this);
+        new Metrics(this, 17521);
     }
 
     @EventHandler
