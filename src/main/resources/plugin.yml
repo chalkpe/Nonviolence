@@ -1,7 +1,7 @@
 name: Nonviolence
 version: '${project.version}'
 main: pe.chalk.bukkit.nonviolence.Nonviolence
-api-version: 1.19
+api-version: 1.20.6
 authors: [ Chalk ]
 description: Prevent good entities being killed by accident
 website: https://github.com/chalkpe/Nonviolence

@@ -15,7 +15,6 @@ public final class DamageFilter {
     // filter by victim
     public static final Predicate<EntityDamageEvent> VICTIM_HAS_CUSTOM_NAME = byVictim(victim -> Objects.nonNull(victim.getCustomName()));
     public static final Predicate<EntityDamageEvent> VICTIM_IS_TAMED = byVictim(victim -> victim instanceof Tameable tameable && tameable.isTamed());
-    public static final Predicate<EntityDamageEvent> VICTIM_IS_VILLAGER = byVictim(victim -> victim instanceof Villager || victim instanceof IronGolem);
 
     // filter by attacker
     public static final Predicate<EntityDamageEvent> ATTACKED_BY_PLAYER_ITSELF = byAttacker(attacker -> attacker instanceof Player);
@@ -23,14 +22,12 @@ public final class DamageFilter {
     public static final Predicate<EntityDamageEvent> ATTACKED_BY_PLAYER = ATTACKED_BY_PLAYER_ITSELF.or(ATTACKED_BY_PLAYER_PROJECTILE);
 
     // filter by cause
-    public static final Predicate<EntityDamageEvent> CAUSED_BY_FALL = byCauses(DamageCause.FALL);
     public static final Predicate<EntityDamageEvent> CAUSED_BY_CHEAT = byCauses(DamageCause.VOID, DamageCause.SUICIDE);
 
     // combined filter
     public static final Predicate<EntityDamageEvent> SHOULD_CANCEL_DAMAGE = anyMatch(
             VICTIM_IS_TAMED,
-            VICTIM_HAS_CUSTOM_NAME.and(not(ATTACKED_BY_PLAYER)),
-            VICTIM_IS_VILLAGER.and(CAUSED_BY_FALL.or(ATTACKED_BY_PLAYER))
+            VICTIM_HAS_CUSTOM_NAME.and(not(ATTACKED_BY_PLAYER))
     );
 
     // final filter
