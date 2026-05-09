@@ -15,6 +15,7 @@ public final class DamageFilter {
     // filter by victim
     public static final Predicate<EntityDamageEvent> VICTIM_HAS_CUSTOM_NAME = byVictim(victim -> Objects.nonNull(victim.getCustomName()));
     public static final Predicate<EntityDamageEvent> VICTIM_IS_TAMED = byVictim(victim -> victim instanceof Tameable tameable && tameable.isTamed());
+    public static final Predicate<EntityDamageEvent> VICTIM_IS_HAPPY_GHAST = byVictim(victim -> victim instanceof HappyGhast);
 
     // filter by attacker
     public static final Predicate<EntityDamageEvent> ATTACKED_BY_PLAYER_ITSELF = byAttacker(attacker -> attacker instanceof Player);
@@ -27,6 +28,7 @@ public final class DamageFilter {
     // combined filter
     public static final Predicate<EntityDamageEvent> SHOULD_CANCEL_DAMAGE = anyMatch(
             VICTIM_IS_TAMED,
+            VICTIM_IS_HAPPY_GHAST,
             VICTIM_HAS_CUSTOM_NAME.and(not(ATTACKED_BY_PLAYER))
     );
 
