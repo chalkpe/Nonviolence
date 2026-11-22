@@ -23,7 +23,7 @@ public final class DamageFilter {
     public static final Predicate<EntityDamageEvent> ATTACKED_BY_PLAYER = ATTACKED_BY_PLAYER_ITSELF.or(ATTACKED_BY_PLAYER_PROJECTILE);
 
     // filter by cause
-    public static final Predicate<EntityDamageEvent> CAUSED_BY_CHEAT = byCauses(DamageCause.VOID, DamageCause.SUICIDE);
+    public static final Predicate<EntityDamageEvent> CAUSED_BY_CHEAT = byCauses(DamageCause.VOID, DamageCause.SUICIDE, DamageCause.KILL);
 
     // combined filter
     public static final Predicate<EntityDamageEvent> SHOULD_CANCEL_DAMAGE = anyMatch(
